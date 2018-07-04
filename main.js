@@ -6,6 +6,15 @@ window.jQuery=function(nodeOrSelector) {
     }
     return nodes
 }
+
+window.Promise=function(fn){
+    //...
+    return {
+        then:function(){}
+    }
+}
+
+
 window.jQuery.ajax=function({url,method,body,successFn,failFn,headers}){
     //如何去写一个promise
     return new Promise(function(resolve,reject){
@@ -30,24 +39,39 @@ window.jQuery.ajax=function({url,method,body,successFn,failFn,headers}){
 }
 
 window.$=window.jQuery
-function f1(){}
-function f2(){}
 myButton.addEventListener('click',(e)=> {
     window.jQuery.ajax({
-        url: '/xxx',
+        url: '/aaa',
         method: 'get',
         headers:{
             'content-type':'application/x-www-form-urlencoded',
             'frank':'18'
-        },
-        successFn: (x) => {
-            f1.call(undefined,x)
-            f2.call(undefined,x)
-            },
-        failFn: (a) => {
-            console.log(a)
-            console.log(a.status)
         }
-    })
+    }).then(
+        (text)=>{console.log(text)},
+        (request)=>{console.log(request)}
+    )
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
